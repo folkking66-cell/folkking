@@ -1,68 +1,93 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Pashtun History Website</title>
+  <title>Pashtun History Portal</title>
 
   <style>
     body {
       margin: 0;
       font-family: Arial;
-      background: #0f172a;
+      background: #0b1220;
       color: white;
     }
 
-    /* NAVBAR */
-    .nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: #0b1220;
+    /* LOGIN */
+    .login {
+      height: 100vh;
       display: flex;
-      justify-content: space-between;
-      padding: 12px 20px;
-      z-index: 100;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at top, #1e293b, #0b1220);
     }
 
-    .nav button {
-      background: transparent;
+    .box {
+      background: #111827;
+      padding: 25px;
+      width: 340px;
+      border-radius: 12px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 6px 0;
       border: none;
+      border-radius: 6px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      border: none;
+      border-radius: 6px;
+      background: #3b82f6;
       color: white;
       cursor: pointer;
-      margin: 0 8px;
-      font-size: 14px;
     }
 
-    .nav button:hover {
-      color: #3b82f6;
+    /* APP */
+    .app {
+      display: none;
     }
 
-    /* SECTIONS */
-    .section {
-      padding: 80px 20px;
-      max-width: 900px;
-      margin: auto;
-    }
-
-    .hero {
-      padding-top: 120px;
+    .nav {
+      background: #0f172a;
+      padding: 12px;
       text-align: center;
+      border-bottom: 1px solid #1e293b;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 30px;
     }
 
     .card {
-      background: #1e293b;
+      background: #111827;
       padding: 20px;
       border-radius: 10px;
       margin-top: 15px;
-      line-height: 1.6;
+      line-height: 1.7;
     }
 
-    h1, h2 {
-      margin: 0;
-    }
-
-    /* SMOOTH SCROLL */
-    html {
-      scroll-behavior: smooth;
+    /* MAP */
+    .map {
+      width: 100%;
+      height: 300px;
+      border-radius: 10px;
+      margin-top: 10px;
+      background: linear-gradient(135deg, #1e3a8a, #0f172a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: #93c5fd;
     }
 
   </style>
@@ -70,77 +95,103 @@
 
 <body>
 
-<!-- NAV -->
-<div class="nav">
-  <div>📜 Pashtun History</div>
+<!-- LOGIN -->
+<div id="login" class="login">
+  <div class="box">
+    <h2>📜 Enter Pashtun History Portal</h2>
 
-  <div>
-    <button onclick="scrollToSec('home')">Home</button>
-    <button onclick="scrollToSec('history')">History</button>
-    <button onclick="scrollToSec('traditions')">Traditions</button>
-    <button onclick="scrollToSec('culture')">Culture</button>
+    <input id="email" placeholder="Email">
+
+    <!-- LOCATION INPUT -->
+    <input id="location" placeholder="Enter your city (optional)">
+
+    <button onclick="enterSite()">Enter History</button>
   </div>
 </div>
 
-<!-- HERO -->
-<div id="home" class="section hero">
-  <h1>🌍 Pashtun History & Culture</h1>
-  <p>Explore the rich history, traditions, and identity of the Pashtun people.</p>
-</div>
+<!-- APP -->
+<div id="app" class="app">
 
-<!-- HISTORY -->
-<div id="history" class="section">
-  <h2>📜 History</h2>
-
-  <div class="card">
-    The Pashtuns are one of the oldest ethnic groups in South and Central Asia.
-    Their origins trace back to ancient Indo-Iranian tribes that settled in the mountainous regions of Afghanistan and Pakistan.
+  <div class="nav">
+    🌍 Pashtun History & Culture Portal
   </div>
 
-  <div class="card">
-    Throughout history, Pashtuns resisted major empires including the Greeks, Mughals, Mongols, and British colonial forces.
-    Their location near the Khyber Pass made them a key strategic civilization in regional history.
-  </div>
+  <div class="container">
 
-  <div class="card">
-    One of the most important historical achievements was the Durrani Empire (1747),
-    founded by Ahmad Shah Durrani, which became the foundation of modern Afghanistan.
-  </div>
-</div>
+    <h1>📜 Pashtun Civilization (Deep History)</h1>
 
-<!-- TRADITIONS -->
-<div id="traditions" class="section">
-  <h2>🌿 Traditions</h2>
+    <div class="card">
+      The Pashtun people are one of the oldest and most historically rich ethnic groups in South and Central Asia.
+      Their identity is built on thousands of years of tribal traditions, resistance, and cultural development.
+    </div>
 
-  <div class="card">
-    Pashtun traditions are based on honor, hospitality, and strong tribal values.
-    These traditions are preserved through generations and guide social life.
-  </div>
+    <div class="card">
+      <h2>🌍 Origins</h2>
+      Pashtuns are believed to descend from ancient Indo-Iranian tribes who settled in the Hindu Kush region.
+      Over time, they developed a strong tribal system based on honor, independence, and oral tradition.
+    </div>
 
-  <div class="card">
-    Key cultural values include hospitality toward guests, respect for elders,
-    and maintaining family honor in all situations.
-  </div>
-</div>
+    <div class="card">
+      <h2>📜 Historical Era</h2>
+      Pashtun regions have been influenced by major empires including Alexander the Great, the Maurya Empire,
+      Islamic Caliphates, Mongols, Mughals, and the British Empire.
+      Despite invasions, Pashtun tribes preserved independence through mountainous geography and tribal unity.
+    </div>
 
-<!-- CULTURE -->
-<div id="culture" class="section">
-  <h2>🎭 Culture</h2>
+    <div class="card">
+      <h2>🏛 Durrani Empire</h2>
+      Founded in 1747 by Ahmad Shah Durrani, this empire became the foundation of modern Afghanistan.
+      At its peak, it controlled large parts of Iran, Pakistan, India, and Central Asia.
+    </div>
 
-  <div class="card">
-    Pashtun culture includes poetry, storytelling, music, and traditional dances like Attan.
-  </div>
+    <div class="card">
+      <h2>🧬 Tribes</h2>
+      Major tribes include Yousafzai, Afridi, Durrani, Khattak, Ghilzai, and many others,
+      each with unique traditions and leadership structures.
+    </div>
 
-  <div class="card">
-    The Pashto language is one of the oldest living languages in the region,
-    with a strong literary and poetic tradition.
+    <div class="card">
+      <h2>🌿 Culture & Traditions</h2>
+      Pashtun culture is based on hospitality, honor, bravery, and strong family systems.
+      Poetry, music, and storytelling are deeply important.
+    </div>
+
+    <div class="card">
+      <h2>⚖ Pashtunwali Code</h2>
+      Melmastia (hospitality), Nang (honor), Badal (justice), Nanawatai (forgiveness), Jirga (council system).
+    </div>
+
+    <!-- MAP -->
+    <div class="card">
+      <h2>🗺 Your Location Map View</h2>
+      <p id="userLoc"></p>
+
+      <div class="map" id="mapBox">
+        Map view placeholder (connects to your location input)
+      </div>
+    </div>
+
   </div>
 </div>
 
 <script>
-function scrollToSec(id) {
-  document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+
+function enterSite() {
+  let loc = document.getElementById("location").value;
+
+  document.getElementById("login").style.display = "none";
+  document.getElementById("app").style.display = "block";
+
+  if (loc) {
+    document.getElementById("userLoc").innerText = "📍 You entered: " + loc;
+    document.getElementById("mapBox").innerText =
+      "📍 Showing region focus: " + loc;
+  } else {
+    document.getElementById("userLoc").innerText =
+      "📍 Location not provided (default view)";
+  }
 }
+
 </script>
 
 </body>
