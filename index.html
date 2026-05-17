@@ -1,47 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Animated Dashboard</title>
+  <title>History Dashboard</title>
   <style>
     body {
       margin: 0;
       font-family: Arial;
       background: #0f172a;
       color: white;
-      overflow: hidden;
     }
 
-    /* LOGIN SCREEN */
+    /* LOGIN */
     .login {
       height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      transition: 0.6s ease;
+      transition: 0.5s;
     }
 
     .box {
       background: #1e293b;
       padding: 25px;
       border-radius: 12px;
-      width: 300px;
+      width: 320px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-      transform: scale(1);
-      transition: 0.4s ease;
     }
 
     input {
       width: 100%;
       padding: 10px;
-      margin: 8px 0;
-      border: none;
+      margin: 6px 0;
       border-radius: 6px;
+      border: none;
     }
 
     button {
       width: 100%;
       padding: 10px;
-      margin-top: 10px;
+      margin-top: 8px;
       border: none;
       border-radius: 6px;
       background: #3b82f6;
@@ -49,14 +46,9 @@
       cursor: pointer;
     }
 
-    button:hover {
-      background: #2563eb;
-    }
-
     /* DASHBOARD */
     .dashboard {
       display: none;
-      height: 100vh;
       animation: fadeIn 0.6s ease;
     }
 
@@ -66,15 +58,15 @@
     }
 
     .sidebar {
-      width: 220px;
-      background: #111827;
+      width: 230px;
       height: 100vh;
+      background: #111827;
       position: fixed;
       padding: 20px;
     }
 
     .content {
-      margin-left: 240px;
+      margin-left: 250px;
       padding: 20px;
     }
 
@@ -83,7 +75,7 @@
       padding: 15px;
       border-radius: 10px;
       margin-top: 10px;
-      animation: pop 0.5s ease;
+      animation: pop 0.4s ease;
     }
 
     @keyframes pop {
@@ -91,9 +83,20 @@
       to { transform: scale(1); opacity: 1; }
     }
 
-    .hidden {
-      display: none;
+    .social {
+      margin-top: 15px;
     }
+
+    .social button {
+      background: #334155;
+      margin-bottom: 6px;
+    }
+
+    .social button:hover {
+      background: #475569;
+    }
+
+    .hidden { display: none; }
   </style>
 </head>
 
@@ -105,7 +108,17 @@
     <h2>Login</h2>
     <input id="email" placeholder="Email">
     <input id="password" type="password" placeholder="Password">
+
     <button onclick="login()">Login</button>
+
+    <div class="social">
+      <p>Or continue with</p>
+      <button>📘 Facebook</button>
+      <button>🎵 TikTok</button>
+      <button>👻 Snapchat</button>
+      <button>📸 Instagram</button>
+    </div>
+
     <p id="msg"></p>
   </div>
 </div>
@@ -114,20 +127,37 @@
 <div id="dashboard" class="dashboard">
 
   <div class="sidebar">
-    <h3>My App</h3>
+    <h3>History App</h3>
     <p id="userEmail"></p>
-    <button onclick="logout()">Logout</button>
   </div>
 
   <div class="content">
     <h1>Dashboard</h1>
 
-    <div class="card">📊 Overview</div>
-    <div class="card">📜 History of Pashtoons</div>
-    <div class="card">🌍 Culture & Traditions</div>
-    <div class="card">📚 Articles Section</div>
-  </div>
+    <div class="card">
+      <h3>📜 History of Pashtoons</h3>
+      <p>
+        Pashtoons are an ethnic group mainly in Afghanistan and Pakistan.
+        They have a strong tribal culture, history, and traditions based on Pashtunwali (honor, hospitality, justice).
+      </p>
+    </div>
 
+    <div class="card">
+      <h3>🌍 Traditions</h3>
+      <ul>
+        <li>Hospitality (Melmastia)</li>
+        <li>Honor culture (Nang)</li>
+        <li>Respect for guests</li>
+        <li>Strong tribal system</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>📚 Culture Section</h3>
+      <p>Pashto language, poetry, music, and traditional clothing are important parts of culture.</p>
+    </div>
+
+  </div>
 </div>
 
 <script>
@@ -142,29 +172,16 @@ function login() {
 
   localStorage.setItem("user", email);
 
-  // ANIMATION TRANSITION
-  let loginPage = document.getElementById("loginPage");
-  let dashboard = document.getElementById("dashboard");
+  document.getElementById("loginPage").style.display = "none";
+  document.getElementById("dashboard").style.display = "block";
 
-  loginPage.style.opacity = "0";
-  loginPage.style.transform = "scale(0.9)";
-
-  setTimeout(() => {
-    loginPage.style.display = "none";
-    dashboard.style.display = "block";
-
-    document.getElementById("userEmail").innerText = email;
-  }, 400);
-}
-
-function logout() {
-  localStorage.removeItem("user");
-  location.reload();
+  document.getElementById("userEmail").innerText = email;
 }
 
 // auto login
 window.onload = function () {
   let user = localStorage.getItem("user");
+
   if (user) {
     document.getElementById("loginPage").style.display = "none";
     document.getElementById("dashboard").style.display = "block";
