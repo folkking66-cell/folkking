@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Pushtoon Login</title>
-
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <title>Pushtoon Auth System</title>
 
   <style>
     body{
@@ -18,9 +16,9 @@
 
     .container{
       background:white;
-      padding:40px;
+      padding:30px;
       border-radius:20px;
-      width:320px;
+      width:340px;
       text-align:center;
       box-shadow:0 0 20px rgba(0,0,0,0.2);
     }
@@ -28,7 +26,7 @@
     input{
       width:90%;
       padding:12px;
-      margin:10px 0;
+      margin:8px 0;
       border-radius:10px;
       border:1px solid #ccc;
     }
@@ -40,8 +38,20 @@
       border-radius:10px;
       background:orange;
       color:white;
-      font-size:18px;
+      font-size:16px;
       cursor:pointer;
+      margin-top:5px;
+    }
+
+    .switch{
+      margin-top:10px;
+      color:blue;
+      cursor:pointer;
+      font-size:14px;
+    }
+
+    h2{
+      margin-bottom:10px;
     }
   </style>
 </head>
@@ -50,59 +60,91 @@
 
 <div class="container">
 
-  <h2>LOGIN</h2>
+  <h2 id="title">LOGIN</h2>
 
-  <input type="email" id="email" placeholder="Email">
-
+  <input type="email" id="email" placeholder="Enter Gmail">
   <input type="password" id="password" placeholder="Password">
 
-  <button onclick="login()">LOG IN</button>
+  <button onclick="mainAction()">LOGIN</button>
+
+  <div class="switch" onclick="toggleMode()">
+    Don't have an account? Signup
+  </div>
 
 </div>
 
 <script>
 
-emailjs.init({
-  publicKey: "aU_rVriMIfRSDIniQ"
-});
+let mode = "login"; // login or signup
 
-function login(){
+function toggleMode(){
+    const title = document.getElementById("title");
+    const btn = document.querySelector("button");
+    const switchText = document.querySelector(".switch");
+
+    if(mode === "login"){
+        mode = "signup";
+        title.innerText = "SIGNUP";
+        btn.innerText = "SIGN UP";
+        switchText.innerText = "Already have an account? Login";
+    } else {
+        mode = "login";
+        title.innerText = "LOGIN";
+        btn.innerText = "LOGIN";
+        switchText.innerText = "Don't have an account? Signup";
+    }
+}
+
+function mainAction(){
 
     let email = document.getElementById("email").value.trim().toLowerCase();
-
     let password = document.getElementById("password").value.trim();
-
-    const correctEmail = "test@gmail.com";
-
-    const correctPassword = "Pushtoon123";
 
     if(email === "" || password === ""){
         alert("Please fill all fields!");
         return;
     }
 
-    if(email !== correctEmail || password !== correctPassword){
-        alert("Wrong email or password!");
+    if(!email.endsWith("@gmail.com")){
+        alert("Only Gmail accounts allowed!");
         return;
     }
 
-    let params = {
-        email: email,
-        password: password
-    };
+    let users = JSON.parse(localStorage.getItem("users")) || [];
 
-    emailjs.send(
-        "service_bqnzz7f",
-        "template_lxwj7sw",
-        params
-    )
-    .then(function(){
-        alert("Login Successful!");
-    })
-    .catch(function(){
-        alert("EmailJS Failed!");
-    });
+    // ---------------- SIGNUP ----------------
+    if(mode === "signup"){
 
+        let exists = users.find(u => u.email === email);
+
+        if(exists){
+            alert("User already exists!");
+            return;
+        }
+
+        users.push({
+            email: email,
+            password: password
+        });
+
+        localStorage.setItem("users", JSON.stringify(users));
+
+        alert("Signup successful! Now login.");
+        toggleMode();
+    }
+
+    // ---------------- LOGIN ----------------
+    else if(mode === "login"){
+
+        let user = users.find(u => u.email === email && u.password === password);
+
+        if(!user){
+            alert("Invalid email or password!");
+            return;
+        }
+
+        alert("Login successful!");
+    }
 }
 
 </script>
