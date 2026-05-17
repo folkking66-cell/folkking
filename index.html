@@ -1,114 +1,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Pashtun History Web App</title>
+  <title>Pashtun Civilization</title>
 
   <style>
     body {
       margin: 0;
       font-family: Arial;
       background: #0b1220;
-      color: white;
-    }
-
-    /* LOGIN */
-    .login {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #0f172a;
-    }
-
-    .box {
-      background: #111827;
-      padding: 25px;
-      width: 340px;
-      border-radius: 12px;
-    }
-
-    input {
-      width: 100%;
-      padding: 10px;
-      margin: 6px 0;
-      border: none;
-      border-radius: 6px;
-    }
-
-    button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 8px;
-      border: none;
-      border-radius: 6px;
-      background: #3b82f6;
-      color: white;
-      cursor: pointer;
-    }
-
-    /* MAP SCREEN */
-    .mapScreen {
-      display: none;
-      height: 100vh;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
-
-    .mapBox {
-      width: 320px;
-      height: 200px;
-      background: linear-gradient(135deg, #1e3a8a, #0f172a);
-      border-radius: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: 10px;
-      color: #93c5fd;
-    }
-
-    /* APP */
-    .app {
-      display: none;
+      color: #e5e7eb;
+      line-height: 1.7;
     }
 
     /* NAV */
     .nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
       background: #0f172a;
-      padding: 12px;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
+      gap: 20px;
+      padding: 12px;
       border-bottom: 1px solid #1e293b;
     }
 
-    .nav button {
-      background: transparent;
-      border: none;
+    .nav a {
+      color: #93c5fd;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .nav a:hover {
       color: white;
-      margin: 0 8px;
-      cursor: pointer;
     }
 
-    .nav button:hover {
-      color: #60a5fa;
-    }
-
+    /* CONTENT */
     .container {
-      max-width: 900px;
+      max-width: 950px;
       margin: auto;
-      padding: 20px;
+      padding: 100px 20px 60px;
     }
 
-    .card {
-      background: #111827;
-      padding: 20px;
-      border-radius: 10px;
-      margin-top: 15px;
-      line-height: 1.7;
+    h1 {
+      font-size: 34px;
     }
 
     h2 {
-      margin-top: 0;
+      color: #60a5fa;
+      margin-top: 40px;
+    }
+
+    .box {
+      background: #111827;
+      padding: 18px;
+      border-radius: 10px;
+      margin-top: 12px;
     }
 
     img {
@@ -116,162 +63,176 @@
       border-radius: 10px;
       margin-top: 10px;
     }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    @media(max-width: 700px){
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 3px 8px;
+      background: #1e3a8a;
+      border-radius: 5px;
+      font-size: 12px;
+      margin-right: 5px;
+    }
   </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
-<div id="loginPage" class="login">
+<!-- NAV -->
+<div class="nav">
+  <a href="#history">History</a>
+  <a href="#empires">Empires</a>
+  <a href="#culture">Culture</a>
+  <a href="#traditions">Traditions</a>
+  <a href="#songs">Traditional Songs</a>
+  <a href="#people">Famous People</a>
+</div>
+
+<div class="container">
+
+  <h1>📜 Pashtun Civilization</h1>
+
   <div class="box">
-    <h2>📜 Pashtun History Portal</h2>
-
-    <input id="email" placeholder="Enter Gmail">
-    <input id="password" type="password" placeholder="Password">
-
-    <button onclick="login()">Login</button>
+    The Pashtuns are one of the oldest ethnic groups in South and Central Asia.
+    They are known for strong tribal identity, honor culture, and resistance history.
   </div>
-</div>
 
-<!-- MAP -->
-<div id="mapPage" class="mapScreen">
-  <h2>📍 Enter Your Location</h2>
+  <!-- HISTORY -->
+  <h2 id="history">📜 Deep History</h2>
 
-  <input id="location" placeholder="City / Region">
-  <button onclick="openApp()">Continue</button>
-
-  <div class="mapBox" id="mapBox">
-    Map Preview Area
+  <div class="box">
+    Pashtuns originate from ancient Indo-Iranian tribes that settled in the Hindu Kush mountains.
+    Their society developed through isolation, warfare, trade routes, and tribal governance.
   </div>
-</div>
 
-<!-- APP -->
-<div id="app" class="app">
+  <div class="box">
+    Historically, Pashtun regions were part of many empires including Persian Achaemenids,
+    Alexander the Great’s campaigns, Mauryas, Ghaznavids, Mughals, and later the British Empire.
+  </div>
 
-  <div class="nav">
-    <div>📜 Pashtun History</div>
+  <div class="box">
+    <b>Key Idea:</b> Despite invasions, Pashtun tribes maintained independence through mountainous geography
+    and decentralized tribal systems.
+  </div>
 
-    <div>
-      <button onclick="show('home')">Home</button>
-      <button onclick="show('history')">History</button>
-      <button onclick="show('traditions')">Traditions</button>
-      <button onclick="show('culture')">Culture</button>
+  <!-- EMPIRES -->
+  <h2 id="empires">🏛 Empires</h2>
+
+  <div class="grid">
+
+    <div class="box">
+      <h3>Durrani Empire</h3>
+      Founded by Ahmad Shah Durrani in 1747. Considered the foundation of modern Afghanistan.
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Ahmad_Shah_Durrani.jpg/800px-Ahmad_Shah_Durrani.jpg">
     </div>
+
+    <div class="box">
+      <h3>Mughal Era Influence</h3>
+      Pashtun tribes played major roles in Mughal military and frontier defense.
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/India_in_1760_English.png/800px-India_in_1760_English.png">
+    </div>
+
   </div>
 
-  <div class="container" id="content"></div>
+  <!-- CULTURE -->
+  <h2 id="culture">🎭 Culture</h2>
+
+  <div class="box">
+    Pashtun culture is based on honor, bravery, hospitality, and poetry.
+    Pashto language is one of the oldest Indo-Iranian languages still spoken today.
+  </div>
+
+  <div class="box">
+    Common cultural elements:
+    <br>
+    <span class="tag">Poetry</span>
+    <span class="tag">Storytelling</span>
+    <span class="tag">Tribal gatherings</span>
+    <span class="tag">Attan dance</span>
+    <span class="tag">Music</span>
+  </div>
+
+  <!-- TRADITIONS -->
+  <h2 id="traditions">🌿 Traditions (Pashtunwali)</h2>
+
+  <div class="box">
+    Pashtunwali is the traditional code of life:
+    <ul>
+      <li><b>Melmastia</b> – Hospitality</li>
+      <li><b>Nang</b> – Honor</li>
+      <li><b>Badal</b> – Justice</li>
+      <li><b>Jirga</b> – Tribal council</li>
+      <li><b>Nanawatai</b> – Forgiveness</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    This system is not written law — it is passed through generations orally.
+  </div>
+
+  <!-- SONGS -->
+  <h2 id="songs">🎶 Traditional Songs</h2>
+
+  <div class="box">
+    Pashtun traditional music is emotional and poetic.
+    It often includes themes of love, war, honor, and homeland.
+  </div>
+
+  <div class="box">
+    Popular elements:
+    <ul>
+      <li>Rubab instrument music</li>
+      <li>Pashto folk songs</li>
+      <li>Attan dance rhythm songs</li>
+      <li>Warrior poetry chants</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    Famous poetic singers include Rahman Baba style spiritual poetry and Khushal Khan Khattak warrior poetry.
+  </div>
+
+  <!-- PEOPLE -->
+  <h2 id="people">👑 Famous People</h2>
+
+  <div class="grid">
+
+    <div class="box">
+      <h3>Ahmad Shah Durrani</h3>
+      Founder of the Durrani Empire and modern Afghanistan.
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Ahmad_Shah_Durrani.jpg/640px-Ahmad_Shah_Durrani.jpg">
+    </div>
+
+    <div class="box">
+      <h3>Khushal Khan Khattak</h3>
+      Warrior poet and leader of Pashtun resistance.
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Khushal_Khan_Khattak.jpg/640px-Khushal_Khan_Khattak.jpg">
+    </div>
+
+    <div class="box">
+      <h3>Rahman Baba</h3>
+      Spiritual Sufi poet of Pashto literature.
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Rahman_Baba.jpg/640px-Rahman_Baba.jpg">
+    </div>
+
+    <div class="box">
+      <h3>Malalai of Maiwand</h3>
+      Heroine of Afghan resistance and bravery.
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Malalai_of_Maiwand.jpg/640px-Malalai_of_Maiwand.jpg">
+    </div>
+
+  </div>
 
 </div>
-
-<script>
-
-let userEmail = "";
-
-/* LOGIN CHECK */
-function login() {
-  let email = document.getElementById("email").value;
-  let pass = document.getElementById("password").value;
-
-  if (!email.includes("@gmail.com")) {
-    alert("Email must be Gmail (@gmail.com)");
-    return;
-  }
-
-  if (!email || !pass) {
-    alert("Fill all fields");
-    return;
-  }
-
-  userEmail = email;
-
-  document.getElementById("loginPage").style.display = "none";
-  document.getElementById("mapPage").style.display = "flex";
-}
-
-/* MAP -> APP */
-function openApp() {
-  let loc = document.getElementById("location").value;
-
-  document.getElementById("mapBox").innerText = "📍 " + loc;
-
-  document.getElementById("mapPage").style.display = "none";
-  document.getElementById("app").style.display = "block";
-
-  show("home");
-}
-
-/* NAV CONTENT */
-function show(page) {
-
-  let c = document.getElementById("content");
-
-  if (page === "home") {
-    c.innerHTML = `
-      <div class="card">
-        <h2>🏠 Welcome</h2>
-        Logged in as: ${userEmail}<br><br>
-        Explore Pashtun history, culture, traditions, and identity.
-      </div>
-    `;
-  }
-
-  if (page === "history") {
-    c.innerHTML = `
-      <div class="card">
-        <h2>📜 Pashtun History (Rich Overview)</h2>
-        Pashtuns are an ancient Indo-Iranian people with roots in the Hindu Kush region.
-        They have resisted many empires including Greeks, Mughals, Mongols, and British.
-      </div>
-
-      <div class="card">
-        <h3>🏛 Durrani Empire</h3>
-        Founded by Ahmad Shah Durrani in 1747, this empire shaped modern Afghanistan.
-      </div>
-
-      <div class="card">
-        <h3>👑 Famous Figures</h3>
-        <p>Ahmad Shah Durrani – Founder of Afghanistan</p>
-        <p>Khushal Khan Khattak – Warrior poet</p>
-        <p>Rahman Baba – Sufi poet</p>
-        <p>Malalai of Maiwand – Symbol of courage</p>
-      </div>
-    `;
-  }
-
-  if (page === "traditions") {
-    c.innerHTML = `
-      <div class="card">
-        <h2>🌿 Traditions (Pashtunwali)</h2>
-        <ul>
-          <li>Melmastia – Hospitality</li>
-          <li>Nang – Honor</li>
-          <li>Badal – Justice</li>
-          <li>Nanawatai – Forgiveness</li>
-          <li>Jirga – Council system</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        Tribal society is based on respect, loyalty, and strong family structure.
-      </div>
-    `;
-  }
-
-  if (page === "culture") {
-    c.innerHTML = `
-      <div class="card">
-        <h2>🎭 Culture</h2>
-        Pashto language, poetry, music, and Attan dance define cultural identity.
-      </div>
-
-      <div class="card">
-        Traditional clothing includes shalwar kameez, pakol, and turbans.
-      </div>
-    `;
-  }
-}
-
-</script>
 
 </body>
 </html>
