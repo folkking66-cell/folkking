@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Pashtun History App</title>
+  <title>Pashtun Learning Book</title>
+
   <style>
     body {
       margin: 0;
@@ -44,316 +45,55 @@
       cursor: pointer;
     }
 
-    /* DASHBOARD */
-    .dashboard {
+    /* APP LAYOUT */
+    .app {
       display: none;
-      animation: fadeIn 0.6s ease;
-    }
-
-    @keyframes fadeIn {
-      from {opacity:0; transform: translateY(20px);}
-      to {opacity:1; transform: translateY(0);}
+      height: 100vh;
     }
 
     .sidebar {
-      width: 240px;
-      height: 100vh;
+      width: 250px;
       background: #111827;
+      height: 100vh;
       position: fixed;
       padding: 15px;
     }
 
-    .content {
-      margin-left: 260px;
-      padding: 20px;
+    .sidebar h3 {
+      margin-bottom: 10px;
     }
 
-    .card {
-      background: #1e293b;
-      padding: 15px;
-      margin-top: 12px;
-      border-radius: 10px;
-      animation: pop 0.4s ease;
-    }
-
-    @keyframes pop {
-      from {transform: scale(0.9); opacity: 0;}
-      to {transform: scale(1); opacity: 1;}
-    }
-
-    .hidden { display:none; }
-
-    /* TIMELINE */
-    .timeline {
-      border-left: 3px solid #3b82f6;
-      margin-left: 10px;
-      padding-left: 15px;
-    }
-
-    .event {
-      margin-bottom: 15px;
-      padding-left: 10px;
-    }
-
-    .event::before {
-      content: "●";
-      color: #3b82f6;
-      margin-right: 5px;
-    }
-
-    /* MAP */
-    .map-box button {
-      background: #334155;
-      margin-top: 5px;
-    }
-
-    /* MUSIC */
-    audio {
-      width: 100%;
-      margin-top: 10px;
-    }
-
-    /* CHAPTERS */
     .chapter {
-      cursor: pointer;
       padding: 10px;
-      background: #334155;
-      margin-top: 5px;
+      margin: 5px 0;
+      background: #1e293b;
       border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
     }
 
     .chapter:hover {
-      background: #475569;
-    }
-  </style>
-</head>
-
-<body>
-
-<!-- LOGIN -->
-<div id="loginPage" class="login">
-  <div class="box">
-    <h2>Login</h2>
-    <input id="email" placeholder="Email">
-    <input id="password" type="password" placeholder="Password">
-    <button onclick="login()">Login</button>
-  </div>
-</div>
-
-<!-- DASHBOARD -->
-<div id="dashboard" class="dashboard">
-
-  <div class="sidebar">
-    <h3>Pashtun History</h3>
-    <p id="userEmail"></p>
-  </div>
-
-  <div class="content">
-
-    <h1>📚 Learning Dashboard</h1>
-
-    <!-- TIMELINE -->
-    <div class="card">
-      <h3>🕰 History Timeline</h3>
-      <div class="timeline">
-        <div class="event">Ancient Indo-Iranian tribal origins</div>
-        <div class="event">Formation of Pashtun tribes in Hindu Kush</div>
-        <div class="event">Durrani Empire founded (1747)</div>
-        <div class="event">Resistance against British colonial rule</div>
-        <div class="event">Modern Pashtun regions (Pakistan & Afghanistan)</div>
-      </div>
-    </div>
-
-    <!-- MAP -->
-    <div class="card map-box">
-      <h3>🗺 Regions</h3>
-      <button onclick="showRegion('Afghanistan')">Afghanistan</button>
-      <button onclick="showRegion('Khyber Pakhtunkhwa')">Khyber Pakhtunkhwa</button>
-      <button onclick="showRegion('Balochistan')">Balochistan</button>
-      <p id="regionInfo"></p>
-    </div>
-
-    <!-- MUSIC -->
-    <div class="card">
-      <h3>🎵 Pashto Music</h3>
-      <p>Traditional Pashto vibes</p>
-      <audio controls>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-      </audio>
-    </div>
-
-    <!-- CHAPTERS -->
-    <div class="card">
-      <h3>📖 Chapters</h3>
-
-      <div class="chapter" onclick="openChapter('origins')">1. Origins</div>
-      <div class="chapter" onclick="openChapter('culture')">2. Culture</div>
-      <div class="chapter" onclick="openChapter('tribes')">3. Tribes</div>
-
-      <p id="chapterText"></p>
-    </div>
-
-  </div>
-</div>
-
-<script>
-function login() {
-  let email = document.getElementById("email").value;
-
-  localStorage.setItem("user", email);
-
-  document.getElementById("loginPage").style.display = "none";
-  document.getElementById("dashboard").style.display = "block";
-
-  document.getElementById("userEmail").innerText = email;
-}
-
-/* MAP */
-function showRegion(region) {
-  let info = "";
-
-  if(region === "Afghanistan") {
-    info = "Central historical homeland of many Pashtun tribes.";
-  }
-  if(region === "Khyber Pakhtunkhwa") {
-    info = "Largest Pashtun population area in Pakistan.";
-  }
-  if(region === "Balochistan") {
-    info = "Home to many Pashtun tribes and mixed cultures.";
-  }
-
-  document.getElementById("regionInfo").innerText = info;
-}
-
-/* CHAPTERS */
-function openChapter(ch) {
-  let text = "";
-
-  if(ch === "origins") {
-    text = "Pashtuns trace origins to ancient Indo-Iranian tribes.";
-  }
-  if(ch === "culture") {
-    text = "Pashtun culture is based on honor, hospitality, and Pashtunwali.";
-  }
-  if(ch === "tribes") {
-    text = "Many tribes exist like Afridi, Yousafzai, and Durrani.";
-  }
-
-  document.getElementById("chapterText").innerText = text;
-}
-
-/* AUTO LOGIN */
-window.onload = function() {
-  let user = localStorage.getItem("user");
-
-  if(user) {
-    document.getElementById("loginPage").style.display = "none";
-    document.getElementById("dashboard").style.display = "block";
-    document.getElementById("userEmail").innerText = user;
-  }
-}
-</script>
-
-</body>
-</html><!DOCTYPE html>
-<html>
-<head>
-  <title>History Dashboard</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial;
-      background: #0f172a;
-      color: white;
-    }
-
-    /* LOGIN */
-    .login {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: 0.5s;
-    }
-
-    .box {
-      background: #1e293b;
-      padding: 25px;
-      border-radius: 12px;
-      width: 320px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-    }
-
-    input {
-      width: 100%;
-      padding: 10px;
-      margin: 6px 0;
-      border-radius: 6px;
-      border: none;
-    }
-
-    button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 8px;
-      border: none;
-      border-radius: 6px;
-      background: #3b82f6;
-      color: white;
-      cursor: pointer;
-    }
-
-    /* DASHBOARD */
-    .dashboard {
-      display: none;
-      animation: fadeIn 0.6s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .sidebar {
-      width: 230px;
-      height: 100vh;
-      background: #111827;
-      position: fixed;
-      padding: 20px;
+      background: #334155;
     }
 
     .content {
-      margin-left: 250px;
+      margin-left: 270px;
       padding: 20px;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from {opacity:0; transform: translateY(10px);}
+      to {opacity:1; transform: translateY(0);}
     }
 
     .card {
       background: #1e293b;
-      padding: 15px;
+      padding: 20px;
       border-radius: 10px;
       margin-top: 10px;
-      animation: pop 0.4s ease;
     }
 
-    @keyframes pop {
-      from { transform: scale(0.9); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    .social {
-      margin-top: 15px;
-    }
-
-    .social button {
-      background: #334155;
-      margin-bottom: 6px;
-    }
-
-    .social button:hover {
-      background: #475569;
-    }
-
-    .hidden { display: none; }
   </style>
 </head>
 
@@ -362,89 +102,128 @@ window.onload = function() {
 <!-- LOGIN -->
 <div id="loginPage" class="login">
   <div class="box">
-    <h2>Login</h2>
+    <h2>Login to Book</h2>
     <input id="email" placeholder="Email">
     <input id="password" type="password" placeholder="Password">
-
-    <button onclick="login()">Login</button>
-
-    <div class="social">
-      <p>Or continue with</p>
-      <button>📘 Facebook</button>
-      <button>🎵 TikTok</button>
-      <button>👻 Snapchat</button>
-      <button>📸 Instagram</button>
-    </div>
-
-    <p id="msg"></p>
+    <button onclick="login()">Enter Book</button>
   </div>
 </div>
 
-<!-- DASHBOARD -->
-<div id="dashboard" class="dashboard">
+<!-- APP -->
+<div id="app" class="app">
 
+  <!-- SIDEBAR -->
   <div class="sidebar">
-    <h3>History App</h3>
-    <p id="userEmail"></p>
+    <h3>📚 Pashtun Book</h3>
+
+    <div class="chapter" onclick="openChapter('intro')">📖 Introduction</div>
+    <div class="chapter" onclick="openChapter('history')">📜 History</div>
+    <div class="chapter" onclick="openChapter('empire')">🏛 Durrani Empire</div>
+    <div class="chapter" onclick="openChapter('tribes')">🧬 Tribes</div>
+    <div class="chapter" onclick="openChapter('traditions')">🌍 Traditions</div>
+    <div class="chapter" onclick="openChapter('pashtunwali')">⚖ Pashtunwali Code</div>
   </div>
 
-  <div class="content">
-    <h1>Dashboard</h1>
-
+  <!-- CONTENT -->
+  <div class="content" id="contentBox">
     <div class="card">
-      <h3>📜 History of Pashtoons</h3>
-      <p>
-        Pashtoons are an ethnic group mainly in Afghanistan and Pakistan.
-        They have a strong tribal culture, history, and traditions based on Pashtunwali (honor, hospitality, justice).
-      </p>
+      Welcome to the Pashtun Learning Book. Select a chapter.
     </div>
-
-    <div class="card">
-      <h3>🌍 Traditions</h3>
-      <ul>
-        <li>Hospitality (Melmastia)</li>
-        <li>Honor culture (Nang)</li>
-        <li>Respect for guests</li>
-        <li>Strong tribal system</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h3>📚 Culture Section</h3>
-      <p>Pashto language, poetry, music, and traditional clothing are important parts of culture.</p>
-    </div>
-
   </div>
+
 </div>
 
 <script>
+
 function login() {
   let email = document.getElementById("email").value;
-  let pass = document.getElementById("password").value;
-
-  if (!email || !pass) {
-    document.getElementById("msg").innerText = "Fill all fields";
-    return;
-  }
 
   localStorage.setItem("user", email);
 
   document.getElementById("loginPage").style.display = "none";
-  document.getElementById("dashboard").style.display = "block";
-
-  document.getElementById("userEmail").innerText = email;
+  document.getElementById("app").style.display = "block";
 }
 
-// auto login
-window.onload = function () {
-  let user = localStorage.getItem("user");
+/* CHAPTER SYSTEM */
+function openChapter(ch) {
 
-  if (user) {
-    document.getElementById("loginPage").style.display = "none";
-    document.getElementById("dashboard").style.display = "block";
-    document.getElementById("userEmail").innerText = user;
+  let text = "";
+
+  if (ch === "intro") {
+    text = `
+    <div class="card">
+      <h2>📖 Introduction</h2>
+      <p>
+        This learning book explores the history, culture, and traditions of the Pashtun people.
+        Pashtuns are one of the largest ethnic groups in South and Central Asia with a rich heritage.
+      </p>
+    </div>`;
   }
+
+  if (ch === "history") {
+    text = `
+    <div class="card">
+      <h2>📜 History</h2>
+      <p>
+        Pashtuns originate from ancient Indo-Iranian tribes.
+        They have lived in the mountainous regions of Afghanistan and Pakistan for thousands of years.
+      </p>
+      <p>
+        They resisted major empires like the Greeks, Mughals, Mongols, and British.
+      </p>
+    </div>`;
+  }
+
+  if (ch === "empire") {
+    text = `
+    <div class="card">
+      <h2>🏛 Durrani Empire</h2>
+      <p>
+        In 1747, Ahmad Shah Durrani founded the Durrani Empire,
+        which became the foundation of modern Afghanistan.
+      </p>
+    </div>`;
+  }
+
+  if (ch === "tribes") {
+    text = `
+    <div class="card">
+      <h2>🧬 Tribes</h2>
+      <p>
+        Major Pashtun tribes include Afridi, Yousafzai, Durrani, Khattak, and Ghilzai.
+        Each tribe has its own traditions and identity.
+      </p>
+    </div>`;
+  }
+
+  if (ch === "traditions") {
+    text = `
+    <div class="card">
+      <h2>🌍 Traditions</h2>
+      <p>
+        Pashtun culture is based on hospitality, honor, and respect for guests.
+        Traditions are passed orally through generations.
+      </p>
+    </div>`;
+  }
+
+  if (ch === "pashtunwali") {
+    text = `
+    <div class="card">
+      <h2>⚖ Pashtunwali Code</h2>
+      <ul>
+        <li>Melmastia (Hospitality)</li>
+        <li>Nang (Honor)</li>
+        <li>Badal (Justice)</li>
+        <li>Nanawatai (Forgiveness)</li>
+        <li>Jirga (Council system)</li>
+      </ul>
+    </div>`;
+  }
+
+  document.getElementById("contentBox").innerHTML = text;
 }
+
 </script>
 
 </body>
