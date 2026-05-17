@@ -7,45 +7,34 @@
     body {
       margin: 0;
       font-family: Arial;
+      background: #0f172a;
       color: white;
       overflow: hidden;
     }
 
-    /* 🌄 BACKGROUND SCENE */
+    /* BACKGROUND */
     .scene {
       position: fixed;
       width: 100%;
       height: 100vh;
-      background: linear-gradient(to top, #0f172a, #1e293b, #334155);
-      overflow: hidden;
+      background: linear-gradient(to top, #0f172a, #1e293b);
     }
 
-    /* 🏔 mountains */
-    .mountain {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: 40%;
-      background: linear-gradient(to top, #0b1220, #1e293b);
-      clip-path: polygon(0 100%, 10% 60%, 25% 80%, 40% 50%, 60% 75%, 75% 55%, 100% 80%, 100% 100%);
-    }
-
-    /* 🌫 fog animation */
     .fog {
       position: absolute;
       width: 200%;
       height: 100%;
-      background: rgba(255,255,255,0.05);
-      filter: blur(30px);
-      animation: moveFog 10s linear infinite;
+      background: rgba(255,255,255,0.04);
+      filter: blur(25px);
+      animation: move 12s linear infinite;
     }
 
-    @keyframes moveFog {
-      from { transform: translateX(-50%); }
-      to { transform: translateX(0%); }
+    @keyframes move {
+      from {transform: translateX(-50%);}
+      to {transform: translateX(0%);}
     }
 
-    /* 🎬 INTRO SCREEN */
+    /* INTRO */
     .intro {
       position: absolute;
       width: 100%;
@@ -53,38 +42,28 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0,0,0,0.7);
       z-index: 10;
-    }
-
-    .intro h1 {
-      font-size: 28px;
-      animation: fadeIn 2s ease;
-    }
-
-    @keyframes fadeIn {
-      from {opacity:0;}
-      to {opacity:1;}
+      font-size: 22px;
+      text-align: center;
     }
 
     /* LOGIN */
     .login {
-      position: absolute;
-      width: 100%;
-      height: 100vh;
       display: none;
+      height: 100vh;
       justify-content: center;
       align-items: center;
+      position: absolute;
+      width: 100%;
       z-index: 20;
     }
 
     .box {
-      background: rgba(15,23,42,0.9);
+      background: #1e293b;
       padding: 25px;
       width: 320px;
       border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
     }
 
     input {
@@ -113,7 +92,7 @@
     }
 
     .sidebar {
-      width: 250px;
+      width: 240px;
       height: 100vh;
       background: #0b1220;
       position: fixed;
@@ -122,16 +101,15 @@
 
     .chapter {
       padding: 10px;
-      margin: 5px 0;
+      margin: 6px 0;
       background: #1e293b;
       border-radius: 6px;
       cursor: pointer;
     }
 
     .content {
-      margin-left: 270px;
+      margin-left: 260px;
       padding: 20px;
-      animation: fadeIn 0.5s ease;
     }
 
     .card {
@@ -140,21 +118,18 @@
       border-radius: 10px;
       margin-top: 10px;
     }
-
   </style>
 </head>
 
 <body>
 
-<!-- 🌄 SCENE -->
 <div class="scene">
   <div class="fog"></div>
-  <div class="mountain"></div>
 </div>
 
-<!-- 🎬 INTRO -->
+<!-- INTRO -->
 <div class="intro" id="intro">
-  <h1>📜 Entering the History of Pashtuns...</h1>
+  📜 Entering the History of Pashtuns...
 </div>
 
 <!-- LOGIN -->
@@ -163,7 +138,7 @@
     <h2>📜 Log into the History of Pashtuns</h2>
     <input id="email" placeholder="Enter Email">
     <input id="password" type="password" placeholder="Enter Password">
-    <button onclick="start()">Enter History</button>
+    <button onclick="enterApp()">Enter History</button>
   </div>
 </div>
 
@@ -171,48 +146,53 @@
 <div class="app" id="app">
 
   <div class="sidebar">
-    <h3>📚 Pashtun History</h3>
+    <h3>📚 Chapters</h3>
 
-    <div class="chapter" onclick="openChapter('intro')">📖 Introduction</div>
-    <div class="chapter" onclick="openChapter('history')">📜 History</div>
-    <div class="chapter" onclick="openChapter('empire')">🏛 Empire</div>
-    <div class="chapter" onclick="openChapter('traditions')">🌍 Traditions</div>
+    <div class="chapter" onclick="openChapter('intro')">Introduction</div>
+    <div class="chapter" onclick="openChapter('history')">History</div>
+    <div class="chapter" onclick="openChapter('empire')">Empire</div>
+    <div class="chapter" onclick="openChapter('traditions')">Traditions</div>
   </div>
 
   <div class="content" id="contentBox">
-    <div class="card">Welcome to the History of Pashtuns</div>
+    <div class="card">Select a chapter</div>
   </div>
 
 </div>
 
 <script>
 
-function start() {
-  document.getElementById("intro").innerHTML = "<h1>🌫 Loading History...</h1>";
-
+/* FIXED FLOW */
+window.onload = function() {
   setTimeout(() => {
     document.getElementById("intro").style.display = "none";
     document.getElementById("loginPage").style.display = "flex";
-  }, 2000);
+  }, 2500);
+};
+
+function enterApp() {
+  document.getElementById("loginPage").style.display = "none";
+  document.getElementById("app").style.display = "block";
 }
 
+/* CHAPTERS */
 function openChapter(ch) {
   let text = "";
 
   if (ch === "intro") {
-    text = "<div class='card'>📖 Pashtuns are one of the oldest ethnic groups in South Asia.</div>";
+    text = "<div class='card'>Pashtuns are one of the oldest ethnic groups in South and Central Asia.</div>";
   }
 
   if (ch === "history") {
-    text = "<div class='card'>📜 Ancient Indo-Iranian tribes, resistance to empires, strong tribal identity.</div>";
+    text = "<div class='card'>They have ancient Indo-Iranian origins and resisted many empires.</div>";
   }
 
   if (ch === "empire") {
-    text = "<div class='card'>🏛 Durrani Empire (1747) founded by Ahmad Shah Durrani.</div>";
+    text = "<div class='card'>Durrani Empire (1747) shaped modern Afghanistan.</div>";
   }
 
   if (ch === "traditions") {
-    text = "<div class='card'>🌍 Pashtunwali: honor, hospitality, justice, jirga system.</div>";
+    text = "<div class='card'>Pashtunwali code: honor, hospitality, justice, jirga system.</div>";
   }
 
   document.getElementById("contentBox").innerHTML = text;
