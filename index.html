@@ -1,6 +1,263 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <title>Pashtun History App</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial;
+      background: #0f172a;
+      color: white;
+    }
+
+    /* LOGIN */
+    .login {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .box {
+      background: #1e293b;
+      padding: 25px;
+      width: 320px;
+      border-radius: 12px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 6px 0;
+      border: none;
+      border-radius: 6px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      border: none;
+      border-radius: 6px;
+      background: #3b82f6;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* DASHBOARD */
+    .dashboard {
+      display: none;
+      animation: fadeIn 0.6s ease;
+    }
+
+    @keyframes fadeIn {
+      from {opacity:0; transform: translateY(20px);}
+      to {opacity:1; transform: translateY(0);}
+    }
+
+    .sidebar {
+      width: 240px;
+      height: 100vh;
+      background: #111827;
+      position: fixed;
+      padding: 15px;
+    }
+
+    .content {
+      margin-left: 260px;
+      padding: 20px;
+    }
+
+    .card {
+      background: #1e293b;
+      padding: 15px;
+      margin-top: 12px;
+      border-radius: 10px;
+      animation: pop 0.4s ease;
+    }
+
+    @keyframes pop {
+      from {transform: scale(0.9); opacity: 0;}
+      to {transform: scale(1); opacity: 1;}
+    }
+
+    .hidden { display:none; }
+
+    /* TIMELINE */
+    .timeline {
+      border-left: 3px solid #3b82f6;
+      margin-left: 10px;
+      padding-left: 15px;
+    }
+
+    .event {
+      margin-bottom: 15px;
+      padding-left: 10px;
+    }
+
+    .event::before {
+      content: "●";
+      color: #3b82f6;
+      margin-right: 5px;
+    }
+
+    /* MAP */
+    .map-box button {
+      background: #334155;
+      margin-top: 5px;
+    }
+
+    /* MUSIC */
+    audio {
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    /* CHAPTERS */
+    .chapter {
+      cursor: pointer;
+      padding: 10px;
+      background: #334155;
+      margin-top: 5px;
+      border-radius: 6px;
+    }
+
+    .chapter:hover {
+      background: #475569;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="loginPage" class="login">
+  <div class="box">
+    <h2>Login</h2>
+    <input id="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard" class="dashboard">
+
+  <div class="sidebar">
+    <h3>Pashtun History</h3>
+    <p id="userEmail"></p>
+  </div>
+
+  <div class="content">
+
+    <h1>📚 Learning Dashboard</h1>
+
+    <!-- TIMELINE -->
+    <div class="card">
+      <h3>🕰 History Timeline</h3>
+      <div class="timeline">
+        <div class="event">Ancient Indo-Iranian tribal origins</div>
+        <div class="event">Formation of Pashtun tribes in Hindu Kush</div>
+        <div class="event">Durrani Empire founded (1747)</div>
+        <div class="event">Resistance against British colonial rule</div>
+        <div class="event">Modern Pashtun regions (Pakistan & Afghanistan)</div>
+      </div>
+    </div>
+
+    <!-- MAP -->
+    <div class="card map-box">
+      <h3>🗺 Regions</h3>
+      <button onclick="showRegion('Afghanistan')">Afghanistan</button>
+      <button onclick="showRegion('Khyber Pakhtunkhwa')">Khyber Pakhtunkhwa</button>
+      <button onclick="showRegion('Balochistan')">Balochistan</button>
+      <p id="regionInfo"></p>
+    </div>
+
+    <!-- MUSIC -->
+    <div class="card">
+      <h3>🎵 Pashto Music</h3>
+      <p>Traditional Pashto vibes</p>
+      <audio controls>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+
+    <!-- CHAPTERS -->
+    <div class="card">
+      <h3>📖 Chapters</h3>
+
+      <div class="chapter" onclick="openChapter('origins')">1. Origins</div>
+      <div class="chapter" onclick="openChapter('culture')">2. Culture</div>
+      <div class="chapter" onclick="openChapter('tribes')">3. Tribes</div>
+
+      <p id="chapterText"></p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function login() {
+  let email = document.getElementById("email").value;
+
+  localStorage.setItem("user", email);
+
+  document.getElementById("loginPage").style.display = "none";
+  document.getElementById("dashboard").style.display = "block";
+
+  document.getElementById("userEmail").innerText = email;
+}
+
+/* MAP */
+function showRegion(region) {
+  let info = "";
+
+  if(region === "Afghanistan") {
+    info = "Central historical homeland of many Pashtun tribes.";
+  }
+  if(region === "Khyber Pakhtunkhwa") {
+    info = "Largest Pashtun population area in Pakistan.";
+  }
+  if(region === "Balochistan") {
+    info = "Home to many Pashtun tribes and mixed cultures.";
+  }
+
+  document.getElementById("regionInfo").innerText = info;
+}
+
+/* CHAPTERS */
+function openChapter(ch) {
+  let text = "";
+
+  if(ch === "origins") {
+    text = "Pashtuns trace origins to ancient Indo-Iranian tribes.";
+  }
+  if(ch === "culture") {
+    text = "Pashtun culture is based on honor, hospitality, and Pashtunwali.";
+  }
+  if(ch === "tribes") {
+    text = "Many tribes exist like Afridi, Yousafzai, and Durrani.";
+  }
+
+  document.getElementById("chapterText").innerText = text;
+}
+
+/* AUTO LOGIN */
+window.onload = function() {
+  let user = localStorage.getItem("user");
+
+  if(user) {
+    document.getElementById("loginPage").style.display = "none";
+    document.getElementById("dashboard").style.display = "block";
+    document.getElementById("userEmail").innerText = user;
+  }
+}
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html>
+<head>
   <title>History Dashboard</title>
   <style>
     body {
