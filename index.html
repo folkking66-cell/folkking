@@ -1,96 +1,175 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Login Dashboard App</title>
+  <title>Animated Dashboard</title>
   <style>
-    body { font-family: Arial; text-align: center; margin-top: 50px; }
-    .box { width: 300px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; }
-    .hidden { display: none; }
-    button { margin-top: 10px; }
+    body {
+      margin: 0;
+      font-family: Arial;
+      background: #0f172a;
+      color: white;
+      overflow: hidden;
+    }
+
+    /* LOGIN SCREEN */
+    .login {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: 0.6s ease;
+    }
+
+    .box {
+      background: #1e293b;
+      padding: 25px;
+      border-radius: 12px;
+      width: 300px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      transform: scale(1);
+      transition: 0.4s ease;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 6px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 6px;
+      background: #3b82f6;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #2563eb;
+    }
+
+    /* DASHBOARD */
+    .dashboard {
+      display: none;
+      height: 100vh;
+      animation: fadeIn 0.6s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .sidebar {
+      width: 220px;
+      background: #111827;
+      height: 100vh;
+      position: fixed;
+      padding: 20px;
+    }
+
+    .content {
+      margin-left: 240px;
+      padding: 20px;
+    }
+
+    .card {
+      background: #1e293b;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 10px;
+      animation: pop 0.5s ease;
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .hidden {
+      display: none;
+    }
   </style>
 </head>
+
 <body>
 
-<!-- SIGNUP -->
-<div id="signupPage" class="box">
-  <h2>Sign Up</h2>
-  <input id="suEmail" placeholder="Email"><br><br>
-  <input id="suPass" type="password" placeholder="Password"><br><br>
-  <button onclick="signup()">Create Account</button>
-  <p id="msg"></p>
-</div>
-
 <!-- LOGIN -->
-<div id="loginPage" class="box hidden">
-  <h2>Login</h2>
-  <input id="liEmail" placeholder="Email"><br><br>
-  <input id="liPass" type="password" placeholder="Password"><br><br>
-  <button onclick="login()">Login</button>
-  <p id="msg2"></p>
+<div id="loginPage" class="login">
+  <div class="box">
+    <h2>Login</h2>
+    <input id="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <p id="msg"></p>
+  </div>
 </div>
 
 <!-- DASHBOARD -->
-<div id="dashboard" class="box hidden">
-  <h2>📊 Dashboard</h2>
-  <p id="welcome"></p>
-  <button onclick="logout()">Logout</button>
+<div id="dashboard" class="dashboard">
+
+  <div class="sidebar">
+    <h3>My App</h3>
+    <p id="userEmail"></p>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <div class="content">
+    <h1>Dashboard</h1>
+
+    <div class="card">📊 Overview</div>
+    <div class="card">📜 History of Pashtoons</div>
+    <div class="card">🌍 Culture & Traditions</div>
+    <div class="card">📚 Articles Section</div>
+  </div>
+
 </div>
 
 <script>
-function signup() {
-    let email = document.getElementById("suEmail").value;
-    let pass = document.getElementById("suPass").value;
-
-    if (!email || !pass) {
-        document.getElementById("msg").innerText = "Fill all fields";
-        return;
-    }
-
-    localStorage.setItem("email", email);
-    localStorage.setItem("password", pass);
-
-    document.getElementById("msg").innerText = "Account created! Now login";
-
-    document.getElementById("signupPage").classList.add("hidden");
-    document.getElementById("loginPage").classList.remove("hidden");
-}
-
 function login() {
-    let email = document.getElementById("liEmail").value;
-    let pass = document.getElementById("liPass").value;
+  let email = document.getElementById("email").value;
+  let pass = document.getElementById("password").value;
 
-    let savedEmail = localStorage.getItem("email");
-    let savedPass = localStorage.getItem("password");
+  if (!email || !pass) {
+    document.getElementById("msg").innerText = "Fill all fields";
+    return;
+  }
 
-    if (email === savedEmail && pass === savedPass) {
-        localStorage.setItem("loggedIn", "true");
+  localStorage.setItem("user", email);
 
-        document.getElementById("loginPage").classList.add("hidden");
-        showDashboard(email);
-    } else {
-        document.getElementById("msg2").innerText = "Wrong email or password";
-    }
-}
+  // ANIMATION TRANSITION
+  let loginPage = document.getElementById("loginPage");
+  let dashboard = document.getElementById("dashboard");
 
-function showDashboard(email) {
-    document.getElementById("dashboard").classList.remove("hidden");
-    document.getElementById("welcome").innerText = "Welcome, " + email;
+  loginPage.style.opacity = "0";
+  loginPage.style.transform = "scale(0.9)";
+
+  setTimeout(() => {
+    loginPage.style.display = "none";
+    dashboard.style.display = "block";
+
+    document.getElementById("userEmail").innerText = email;
+  }, 400);
 }
 
 function logout() {
-    localStorage.removeItem("loggedIn");
-
-    document.getElementById("dashboard").classList.add("hidden");
-    document.getElementById("loginPage").classList.remove("hidden");
+  localStorage.removeItem("user");
+  location.reload();
 }
 
-window.onload = function() {
-    if (localStorage.getItem("loggedIn") === "true") {
-        let email = localStorage.getItem("email");
-        showDashboard(email);
-        document.getElementById("signupPage").classList.add("hidden");
-        document.getElementById("loginPage").classList.add("hidden");
-    }
+// auto login
+window.onload = function () {
+  let user = localStorage.getItem("user");
+  if (user) {
+    document.getElementById("loginPage").style.display = "none";
+    document.getElementById("dashboard").style.display = "block";
+    document.getElementById("userEmail").innerText = user;
+  }
 }
 </script>
 
