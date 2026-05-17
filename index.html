@@ -7,12 +7,12 @@
 <style>
 body{
   margin:0;
-  font-family:Arial;
+  font-family:Arial, sans-serif;
   background:#0b1220;
   color:#e5e7eb;
 }
 
-/* LOGIN SCREEN (DEFAULT FIRST VIEW) */
+/* LOGIN PAGE */
 #loginPage{
   height:100vh;
   display:flex;
@@ -26,6 +26,7 @@ body{
   padding:25px;
   border-radius:12px;
   width:320px;
+  box-shadow:0 0 20px rgba(0,0,0,0.5);
 }
 
 input{
@@ -34,6 +35,7 @@ input{
   margin:8px 0;
   border:none;
   border-radius:6px;
+  outline:none;
 }
 
 button{
@@ -44,9 +46,10 @@ button{
   background:#3b82f6;
   color:white;
   cursor:pointer;
+  margin-top:10px;
 }
 
-/* MAIN SITE (HIDDEN UNTIL LOGIN) */
+/* MAIN SITE */
 #site{
   display:none;
 }
@@ -69,6 +72,7 @@ header{
   padding:20px;
   margin:18px 0;
   border-radius:10px;
+  box-shadow:0 0 10px rgba(0,0,0,0.3);
 }
 
 h1,h2{
@@ -84,13 +88,13 @@ h1,h2{
 
 <body>
 
-<!-- LOGIN (SHOWN FIRST AUTOMATICALLY) -->
+<!-- LOGIN SCREEN (FIRST VIEW) -->
 <div id="loginPage">
   <div class="box">
     <h2>🔐 Login Required</h2>
-    <p class="small">Enter details to access Pashtun History Portal</p>
+    <p class="small">Enter Gmail and password to continue</p>
 
-    <input id="email" placeholder="Email (@gmail.com)">
+    <input id="email" placeholder="Enter email (@gmail.com)">
     <input id="password" type="password" placeholder="Password">
 
     <button onclick="login()">Login</button>
@@ -108,33 +112,58 @@ h1,h2{
 
 <div class="section">
 <h2>Introduction</h2>
-The Pashtuns are a major ethnic group of Afghanistan and Pakistan with a deep tribal, cultural, and historical identity.
+The Pashtuns are a major ethnic group living mainly in Afghanistan and Pakistan. Their identity is shaped by tribal structure, geography, language, and centuries of history.
 </div>
 
 <div class="section">
 <h2>Geography</h2>
-Pashtun regions stretch between the Indus River and Hindu Kush mountains, forming a historic frontier zone.
+Pashtun regions stretch from the Indus River to the Hindu Kush mountains. This area has historically been a major frontier for trade, migration, and invasions.
 </div>
 
 <div class="section">
-<h2>History of Invasions</h2>
-Greeks, Persians, Arabs, Mongols, Mughals, British, Soviets, and modern forces have passed through this region.
+<h2>Historical Invasions</h2>
+The region has seen many invasions including:
+<ul>
+<li>Alexander the Great (Greeks)</li>
+<li>Persians</li>
+<li>Arabs</li>
+<li>Mongols</li>
+<li>Mughals</li>
+<li>British Empire</li>
+<li>Soviet Union</li>
+<li>United States (modern era)</li>
+</ul>
+Despite this, local tribal systems remained strong.
 </div>
 
 <div class="section">
 <h2>Pashtunwali Code</h2>
+The traditional code of life:
 <ul>
-<li>Melmastia – Hospitality</li>
-<li>Nang – Honor</li>
-<li>Badal – Justice</li>
-<li>Nanawatai – Refuge</li>
-<li>Jirga – Tribal council</li>
+<li><b>Melmastia</b> – Hospitality</li>
+<li><b>Nang</b> – Honor</li>
+<li><b>Badal</b> – Justice / revenge</li>
+<li><b>Nanawatai</b> – Refuge / forgiveness</li>
+<li><b>Jirga</b> – Tribal council system</li>
 </ul>
 </div>
 
 <div class="section">
 <h2>Culture</h2>
-Pashto poetry, Attan dance, Rubab music, and oral traditions define Pashtun cultural identity.
+Pashtun culture includes poetry, music, storytelling, and dance.
+
+Key elements:
+<ul>
+<li>Pashto poetry (Rahman Baba, Khushal Khan Khattak)</li>
+<li>Attan traditional dance</li>
+<li>Rubab musical instrument</li>
+<li>Oral storytelling traditions</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>Conclusion</h2>
+Pashtun history reflects resilience, tribal identity, and continuous interaction with regional and global powers over centuries.
 </div>
 
 </div>
@@ -142,20 +171,17 @@ Pashto poetry, Attan dance, Rubab music, and oral traditions define Pashtun cult
 </div>
 
 <script>
-
-// AUTO LOGIN GATE LOGIC
 function login(){
   let email = document.getElementById("email").value;
-  let pass = document.getElementById("password").value;
+  let password = document.getElementById("password").value;
 
-  if(email.includes("@gmail.com") && pass.length >= 4){
+  if(email.includes("@gmail.com") && password.length >= 4){
     document.getElementById("loginPage").style.display = "none";
     document.getElementById("site").style.display = "block";
   } else {
-    alert("Invalid login details");
+    alert("Invalid login! Use @gmail.com and password 4+ characters.");
   }
 }
-
 </script>
 
 </body>
