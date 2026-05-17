@@ -1,198 +1,154 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Pashtun History Portal</title>
-
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial;
-      background: #0b1220;
-      color: white;
-    }
-
-    /* LOGIN */
-    .login {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: radial-gradient(circle at top, #1e293b, #0b1220);
-    }
-
-    .box {
-      background: #111827;
-      padding: 25px;
-      width: 340px;
-      border-radius: 12px;
-    }
-
-    input {
-      width: 100%;
-      padding: 10px;
-      margin: 6px 0;
-      border: none;
-      border-radius: 6px;
-    }
-
-    button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 8px;
-      border: none;
-      border-radius: 6px;
-      background: #3b82f6;
-      color: white;
-      cursor: pointer;
-    }
-
-    /* APP */
-    .app {
-      display: none;
-    }
-
-    .nav {
-      background: #0f172a;
-      padding: 12px;
-      text-align: center;
-      border-bottom: 1px solid #1e293b;
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: auto;
-      padding: 20px;
-    }
-
-    h1 {
-      font-size: 30px;
-    }
-
-    .card {
-      background: #111827;
-      padding: 20px;
-      border-radius: 10px;
-      margin-top: 15px;
-      line-height: 1.7;
-    }
-
-    /* MAP */
-    .map {
-      width: 100%;
-      height: 300px;
-      border-radius: 10px;
-      margin-top: 10px;
-      background: linear-gradient(135deg, #1e3a8a, #0f172a);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      color: #93c5fd;
-    }
-
-  </style>
-</head>
-
-<body>
-
-<!-- LOGIN -->
-<div id="login" class="login">
-  <div class="box">
-    <h2>📜 Enter Pashtun History Portal</h2>
-
-    <input id="email" placeholder="Email">
-
-    <!-- LOCATION INPUT -->
-    <input id="location" placeholder="Enter your city (optional)">
-
-    <button onclick="enterSite()">Enter History</button>
-  </div>
-</div>
-
-<!-- APP -->
-<div id="app" class="app">
-
-  <div class="nav">
-    🌍 Pashtun History & Culture Portal
-  </div>
-
-  <div class="container">
-
-    <h1>📜 Pashtun Civilization (Deep History)</h1>
-
+if (page === "history") {
+  c.innerHTML = `
     <div class="card">
-      The Pashtun people are one of the oldest and most historically rich ethnic groups in South and Central Asia.
-      Their identity is built on thousands of years of tribal traditions, resistance, and cultural development.
+      <h2>📜 Pashtun History — Complete Overview</h2>
+
+      <p>
+        The Pashtuns (also known as Pakhtuns or Pathans) are one of the largest
+        and most historically significant ethnic groups in South and Central Asia.
+        Their homeland spans across eastern Afghanistan and northwestern Pakistan,
+        particularly Khyber Pakhtunkhwa, Balochistan, and surrounding tribal regions.
+      </p>
+
+      <p>
+        Their history is deeply tied to ancient migration patterns, mountain geography,
+        tribal governance, and continuous interaction with major empires for over two millennia.
+      </p>
     </div>
 
     <div class="card">
-      <h2>🌍 Origins</h2>
-      Pashtuns are believed to descend from ancient Indo-Iranian tribes who settled in the Hindu Kush region.
-      Over time, they developed a strong tribal system based on honor, independence, and oral tradition.
+      <h3>🌍 Ancient Origins</h3>
+      <p>
+        The origin of the Pashtun people is widely believed to trace back to ancient
+        Indo-Iranian tribes that settled in the Hindu Kush mountain range.
+        These tribes developed a distinct identity due to geographic isolation,
+        which preserved their language (Pashto), customs, and tribal structure.
+      </p>
+
+      <p>
+        Some historical theories suggest connections with ancient groups mentioned in
+        Greek, Persian, and early Islamic records. However, the exact origin remains
+        debated among historians and anthropologists.
+      </p>
     </div>
 
     <div class="card">
-      <h2>📜 Historical Era</h2>
-      Pashtun regions have been influenced by major empires including Alexander the Great, the Maurya Empire,
-      Islamic Caliphates, Mongols, Mughals, and the British Empire.
-      Despite invasions, Pashtun tribes preserved independence through mountainous geography and tribal unity.
+      <h3>⚔️ Classical Era & Early Empires</h3>
+      <p>
+        Pashtun regions have historically been a strategic corridor between Central Asia
+        and the Indian subcontinent. Because of this, they were influenced by many major empires:
+      </p>
+
+      <ul>
+        <li>Persian Achaemenid Empire</li>
+        <li>Alexander the Great’s Macedonian campaign (4th century BCE)</li>
+        <li>Maurya Empire (Ancient India)</li>
+        <li>Kushan Empire</li>
+        <li>Ghaznavid and Ghurid dynasties</li>
+      </ul>
+
+      <p>
+        Despite repeated invasions, mountainous terrain allowed many Pashtun tribes to
+        retain semi-independent governance and strong local autonomy.
+      </p>
     </div>
 
     <div class="card">
-      <h2>🏛 Durrani Empire</h2>
-      Founded in 1747 by Ahmad Shah Durrani, this empire became the foundation of modern Afghanistan.
-      At its peak, it controlled large parts of Iran, Pakistan, India, and Central Asia.
+      <h3>🏛 Islamic Era & Medieval Period</h3>
+      <p>
+        With the arrival of Islam in the 7th–8th centuries, Pashtun regions gradually
+        became part of the broader Islamic world. Over time, Pashtuns played a major role
+        in regional Islamic dynasties and military campaigns.
+      </p>
+
+      <p>
+        During the medieval period, Pashtun warriors and leaders became influential
+        within the Delhi Sultanate and later the Mughal Empire.
+      </p>
     </div>
 
     <div class="card">
-      <h2>🧬 Tribes</h2>
-      Major tribes include Yousafzai, Afridi, Durrani, Khattak, Ghilzai, and many others,
-      each with unique traditions and leadership structures.
+      <h3>🏹 Mughal Period & Tribal Resistance</h3>
+      <p>
+        The Mughal Empire faced continuous resistance from Pashtun tribes,
+        especially in the frontier regions. Tribal independence, combined with difficult
+        terrain, made complete control extremely difficult.
+      </p>
+
+      <p>
+        Famous resistance leaders such as Khushal Khan Khattak emerged during this era,
+        symbolizing Pashtun pride, poetry, and military resistance.
+      </p>
     </div>
 
     <div class="card">
-      <h2>🌿 Culture & Traditions</h2>
-      Pashtun culture is based on hospitality, honor, bravery, and strong family systems.
-      Poetry, music, and storytelling are deeply important.
+      <h3>🏛 The Durrani Empire (1747–early 1800s)</h3>
+      <p>
+        A defining moment in Pashtun history came in 1747 when Ahmad Shah Durrani
+        founded the Durrani Empire in Kandahar.
+      </p>
+
+      <p>
+        He is widely known as the “Founder of Modern Afghanistan.”
+        His empire became one of the most powerful states in the region,
+        stretching from Iran to northern India at its peak.
+      </p>
+
+      <p>
+        The Durrani period marked a rare moment of unified Pashtun political power,
+        influencing regional politics, trade routes, and military structure.
+      </p>
     </div>
 
     <div class="card">
-      <h2>⚖ Pashtunwali Code</h2>
-      Melmastia (hospitality), Nang (honor), Badal (justice), Nanawatai (forgiveness), Jirga (council system).
+      <h3>🏴 British Colonial Era</h3>
+      <p>
+        During the 19th and early 20th centuries, Pashtun regions became a major frontier
+        of British colonial expansion in South Asia.
+      </p>
+
+      <p>
+        The British faced strong resistance in tribal areas, leading to multiple military campaigns.
+        The Durand Line (1893) later divided Pashtun territories between Afghanistan and British India,
+        a boundary that still influences geopolitics today.
+      </p>
     </div>
 
-    <!-- MAP -->
     <div class="card">
-      <h2>🗺 Your Location Map View</h2>
-      <p id="userLoc"></p>
+      <h3>🧠 Culture of Resistance & Identity</h3>
+      <p>
+        A defining feature of Pashtun history is the strong culture of independence.
+        Tribal systems allowed communities to govern themselves through councils (jirgas),
+        rather than centralized authority.
+      </p>
 
-      <div class="map" id="mapBox">
-        Map view placeholder (connects to your location input)
-      </div>
+      <p>
+        This created a society where honor, loyalty, and autonomy became core values
+        embedded in daily life and political behavior.
+      </p>
     </div>
 
-  </div>
-</div>
+    <div class="card">
+      <h3>👑 Key Historical Figures</h3>
+      <ul>
+        <li><b>Ahmad Shah Durrani</b> — Founder of the Durrani Empire</li>
+        <li><b>Khushal Khan Khattak</b> — Warrior poet and tribal leader</li>
+        <li><b>Rahman Baba</b> — Famous Sufi poet of Pashto literature</li>
+        <li><b>Malalai of Maiwand</b> — Symbol of resistance and courage</li>
+      </ul>
+    </div>
 
-<script>
+    <div class="card">
+      <h3>📌 Modern Era</h3>
+      <p>
+        Today, Pashtuns remain one of the largest ethnic groups in Afghanistan and Pakistan,
+        playing major roles in politics, military service, literature, business, and culture.
+      </p>
 
-function enterSite() {
-  let loc = document.getElementById("location").value;
-
-  document.getElementById("login").style.display = "none";
-  document.getElementById("app").style.display = "block";
-
-  if (loc) {
-    document.getElementById("userLoc").innerText = "📍 You entered: " + loc;
-    document.getElementById("mapBox").innerText =
-      "📍 Showing region focus: " + loc;
-  } else {
-    document.getElementById("userLoc").innerText =
-      "📍 Location not provided (default view)";
-  }
+      <p>
+        Their identity continues to be shaped by Pashto language, tribal traditions,
+        and the enduring ethical code of Pashtunwali.
+      </p>
+    </div>
+  `;
 }
-
-</script>
-
-</body>
-</html>
